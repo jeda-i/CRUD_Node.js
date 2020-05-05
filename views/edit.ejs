@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My CRUD in NodeJS</title>
+  <style>
+    input, select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    
+    input[type=submit] {
+      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    input[type=submit]:hover {
+      background-color: #45a049;
+    }
+    
+    div {
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+      margin-left: 20%;
+      margin-right: 20%;
+    }
+    </style>
+</head>
+<body>
+ 
+<h2>Editar Registro</h2>
+  <% data.forEach(function(details) { %>
+    <div>
+    <form action="/edit/<%= details._id %>" method="POST">
+      <label for="name">Nome</label>
+      <input type="text" name="name" value="<%= details.name %>" required><br>
+
+      <label for="sex">Sobrenome</label>
+      <input type="text" name="surname" value="<%= details.surname %>" required><br>
+
+      <label for="birthday">Data de nascimento</label>
+      <input type="date" name="birthday" value="<%= details.birthday %>" required><br>
+
+      <label for="rg">RG</label>
+      <input type="number" maxlength="10" name="rg" value="<%= details.rg %>" required><br>
+
+      <label for="cpf">CPF</label>
+      <input type="number" maxlength="11" name="cpf" value="<%= details.cpf %>" required><br>
+
+      <label for="cnh">Carteira de habilitação</label>
+      <input type="number" value="<%= details.name %>" name="cnh"><br>
+
+      <label for="cep">CEP</label>
+      <input type="number" maxlength="8" name="cep" value="<%= details.cep %>" required><br>
+
+      <label for="address">Endere&ccedil;o</label>
+      <input type="text" maxlength="50" name="address" value="<%= details.address %>" required><br>
+
+      <label for="risk_group">Grupo de risco</label>
+      <% if(details.risk_group == 'on'){ %>
+        <input type="checkbox" name="risk_group" checked><br><br>
+      <% } %>
+      <% if(details.risk_group != 'on'){ %>
+        <input type="checkbox" name="risk_group"><br><br>
+      <% } %>
+      
+
+      <label for="pedido">Pedido</label><br>
+      <textarea rows="4" cols="50" name="pedido" required> <%= details.pedido %></textarea><br>
+      <br />
+      <button><a href="/show">Todos</a></button>
+      <button type="submit">Editar</button>
+    </form>
+</div>
+  <% }) %>
+ 
+</body>
+</html>
